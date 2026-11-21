@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MINDRUSH</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="logo">MIND<span>RUSH</span></div>
+    <button id="soundBtn" class="small-btn">🔊 SOUND ON</button>
+  </header>
+
+  <main>
+    <section id="home" class="screen active">
+      <div class="hero">
+        <p class="eyebrow">CHALLENGE YOUR BRAIN</p>
+        <h1>Ready to<br><span>MindRush?</span></h1>
+        <p class="intro">Think fast. Solve puzzles. Beat your best time.</p>
+
+        <div class="settings-card">
+          <h3>Choose your difficulty</h3>
+          <div class="choice-row">
+            <button class="choice selected" data-difficulty="easy">🌈 Easy</button>
+            <button class="choice" data-difficulty="hard">🌑 Hard</button>
+          </div>
+
+          <h3>Choose your time mode</h3>
+          <div class="choice-row">
+            <button class="choice selected" data-timemode="stopwatch">⏱ Stopwatch</button>
+            <button class="choice" data-timemode="fun">🔥 FUN MODE</button>
+          </div>
+
+          <div id="durationBox" class="duration-box hidden">
+            <label for="duration">Choose your time limit</label>
+            <select id="duration">
+              <option value="2">2 minutes</option>
+              <option value="4" selected>4 minutes</option>
+              <option value="6">6 minutes</option>
+              <option value="10">10 minutes</option>
+            </select>
+          </div>
+
+          <button id="startBtn" class="primary-btn">LET'S PLAY →</button>
+        </div>
+      </div>
+    </section>
+
+    <section id="games" class="screen">
+      <div class="page-heading">
+        <button class="back-btn" onclick="goHome()">← HOME</button>
+        <p class="eyebrow">PICK YOUR CHALLENGE</p>
+        <h1>Choose a game</h1>
+        <p id="modeInfo"></p>
+      </div>
+
+      <div class="game-grid">
+        <button class="game-card puzzle-card" onclick="openGame('puzzle')">
+          <span class="game-icon">🧩</span>
+          <h2>Picture Puzzle</h2>
+          <p>Put the picture back together.</p>
+          <span class="play-label">PLAY →</span>
+        </button>
+
+        <button class="game-card memory-card" onclick="openGame('memory')">
+          <span class="game-icon">🃏</span>
+          <h2>Memory Match</h2>
+          <p>Find all matching pairs.</p>
+          <span class="play-label">PLAY →</span>
+        </button>
+
+        <button class="game-card words-card" onclick="openGame('scramble')">
+          <span class="game-icon">🔤</span>
+          <h2>Word Scramble</h2>
+          <p>Unscramble the mixed-up word.</p>
+          <span class="play-label">PLAY →</span>
+        </button>
+
+        <button class="game-card wordle-card" onclick="openGame('wordle')">
+          <span class="game-icon">🟩</span>
+          <h2>Wordle</h2>
+          <p>Guess the secret five-letter word.</p>
+          <span class="play-label">PLAY →</span>
+        </button>
+
+        <button class="game-card math-card" onclick="openGame('math')">
+          <span class="game-icon">➗</span>
+          <h2>Quick Math</h2>
+          <p>Answer the questions as fast as you can.</p>
+          <span class="play-label">PLAY →</span>
+        </button>
+      </div>
+    </section>
+
+    <section id="play" class="screen">
+      <div class="play-header">
+        <button class="back-btn" onclick="backToGames()">← GAMES</button>
+        <div>
+          <h2 id="gameTitle">Game</h2>
+          <p id="levelLabel">Level 1</p>
+        </div>
+        <div class="timer-card">
+          <small id="timerLabel">TIME</small>
+          <strong id="timer">00:00</strong>
+        </div>
+      </div>
+
+      <div class="progress-wrap">
+        <div id="progressBar"></div>
+      </div>
+
+      <div id="gameArea" class="game-area"></div>
+
+      <div class="play-footer">
+        <p id="gameMessage">Good luck!</p>
+        <button id="nextBtn" class="primary-btn hidden">NEXT LEVEL →</button>
+      </div>
+    </section>
+
+    <section id="result" class="screen">
+      <div class="result-card">
+        <div class="result-icon" id="resultIcon">🏆</div>
+        <p class="eyebrow">CHALLENGE COMPLETE</p>
+        <h1 id="resultTitle">Amazing!</h1>
+        <p id="resultText"></p>
+        <div class="result-stats">
+          <div><strong id="resultTime">00:00</strong><span>TIME</span></div>
+          <div><strong id="resultLevel">1</strong><span>LEVEL</span></div>
+        </div>
+        <button class="primary-btn" onclick="backToGames()">PLAY ANOTHER GAME</button>
+        <button class="secondary-btn" onclick="goHome()">BACK TO HOME</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>
