@@ -7,132 +7,221 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+
   <header class="topbar">
-    <div class="logo">MIND<span>RUSH</span></div>
-    <button id="soundBtn" class="small-btn">🔊 SOUND ON</button>
+    <a class="logo" href="#" onclick="goHome()">MIND<span>RUSH</span></a>
+    <div class="top-actions">
+      <button id="soundBtn" class="icon-btn" onclick="toggleSound()">🔊</button>
+      <button class="icon-btn" onclick="goHome()">⌂</button>
+    </div>
   </header>
 
   <main>
+    <!-- HOME SCREEN -->
     <section id="home" class="screen active">
       <div class="hero">
-        <p class="eyebrow">CHALLENGE YOUR BRAIN</p>
-        <h1>Ready to<br><span>MindRush?</span></h1>
-        <p class="intro">Think fast. Solve puzzles. Beat your best time.</p>
+        <div class="hero-content">
+          <span class="eyebrow">THINK FAST. PLAY SMART.</span>
+          <h1>Give your brain<br><span>a little rush.</span></h1>
+          <p>Challenge yourself with puzzles, brain games and quick thinking challenges.</p>
+          <button class="primary-btn" id="startBtn">LET'S PLAY <span>→</span></button>
+        </div>
+        <div class="hero-art">
+          <div class="art-circle"></div>
+          <div class="art-card card-one">🧩</div>
+          <div class="art-card card-two">⚡</div>
+          <div class="art-card card-three">💡</div>
+          <div class="art-card card-four">?</div>
+          <div class="art-label">YOUR BRAIN<br>IS THE LIMIT</div>
+        </div>
+      </div>
 
-        <div class="settings-card">
-          <h3>Choose your difficulty</h3>
-          <div class="choice-row">
-            <button class="choice selected" data-difficulty="easy">🌈 Easy</button>
-            <button class="choice" data-difficulty="hard">🌑 Hard</button>
+      <div class="setup-panel">
+        <div class="setup-heading">
+          <span class="eyebrow">CUSTOMIZE YOUR GAME</span>
+          <h2>Choose your challenge</h2>
+        </div>
+
+        <div class="settings-grid">
+          <div class="setting-box">
+            <h3>01. Difficulty</h3>
+            <div class="choice-row">
+              <button class="choice active" data-difficulty="easy">
+                <span>☀️</span> Easy
+              </button>
+              <button class="choice" data-difficulty="hard">
+                <span>🌑</span> Hard
+              </button>
+            </div>
           </div>
 
-          <h3>Choose your time mode</h3>
-          <div class="choice-row">
-            <button class="choice selected" data-timemode="stopwatch">⏱ Stopwatch</button>
-            <button class="choice" data-timemode="fun">🔥 FUN MODE</button>
+          <div class="setting-box">
+            <h3>02. Time mode</h3>
+            <div class="choice-row">
+              <button class="choice active" data-timemode="stopwatch">
+                <span>⏱</span> Stopwatch
+              </button>
+              <button class="choice" data-timemode="fun">
+                <span>🔥</span> Fun mode
+              </button>
+            </div>
           </div>
 
-          <div id="durationBox" class="duration-box hidden">
-            <label for="duration">Choose your time limit</label>
+          <div class="setting-box duration-box">
+            <h3>03. Choose your time</h3>
             <select id="duration">
-              <option value="2">2 minutes</option>
-              <option value="4" selected>4 minutes</option>
-              <option value="6">6 minutes</option>
-              <option value="10">10 minutes</option>
+              <option value="120">2 minutes</option>
+              <option value="240">4 minutes</option>
+              <option value="360">6 minutes</option>
+              <option value="600">10 minutes</option>
             </select>
+            <p>Used in Fun Mode</p>
           </div>
-
-          <button id="startBtn" class="primary-btn">LET'S PLAY →</button>
         </div>
       </div>
     </section>
 
+    <!-- GAME SELECTION -->
     <section id="games" class="screen">
-      <div class="page-heading">
-        <button class="back-btn" onclick="goHome()">← HOME</button>
-        <p class="eyebrow">PICK YOUR CHALLENGE</p>
-        <h1>Choose a game</h1>
-        <p id="modeInfo"></p>
+      <div class="section-heading">
+        <span class="eyebrow">PICK YOUR GAME</span>
+        <h1>Choose your <span>challenge.</span></h1>
+        <p id="modeInfo">Easy mode · Stopwatch</p>
       </div>
 
-      <div class="game-grid">
-        <button class="game-card puzzle-card" onclick="openGame('puzzle')">
-          <span class="game-icon">🧩</span>
+      <div class="featured-puzzle" onclick="openGame('puzzle')">
+        <div class="featured-copy">
+          <span class="main-tag">★ MAIN GAME</span>
           <h2>Picture Puzzle</h2>
-          <p>Put the picture back together.</p>
-          <span class="play-label">PLAY →</span>
+          <p>Put the pieces together. Every level brings a new picture and a bigger challenge.</p>
+          <span class="play-link">PLAY PUZZLE <b>→</b></span>
+        </div>
+        <div class="featured-art">
+          <div class="puzzle-piece p1"></div>
+          <div class="puzzle-piece p2"></div>
+          <div class="puzzle-piece p3"></div>
+          <div class="puzzle-piece p4"></div>
+        </div>
+        <div class="featured-number">01</div>
+      </div>
+
+      <div class="mini-heading">
+        <div>
+          <span class="eyebrow">MORE WAYS TO PLAY</span>
+          <h2>Mini games</h2>
+        </div>
+        <span class="mini-count">08 CHALLENGES</span>
+      </div>
+
+      <div class="mini-grid">
+        <button class="mini-card" onclick="openGame('memory')">
+          <span class="mini-icon purple">▦</span>
+          <span class="mini-name">Memory Match</span>
+          <span class="mini-desc">Find matching pairs</span>
+          <span class="mini-arrow">↗</span>
         </button>
 
-        <button class="game-card memory-card" onclick="openGame('memory')">
-          <span class="game-icon">🃏</span>
-          <h2>Memory Match</h2>
-          <p>Find all matching pairs.</p>
-          <span class="play-label">PLAY →</span>
+        <button class="mini-card" onclick="openGame('scramble')">
+          <span class="mini-icon orange">Aa</span>
+          <span class="mini-name">Word Scramble</span>
+          <span class="mini-desc">Unscramble the word</span>
+          <span class="mini-arrow">↗</span>
         </button>
 
-        <button class="game-card words-card" onclick="openGame('scramble')">
-          <span class="game-icon">🔤</span>
-          <h2>Word Scramble</h2>
-          <p>Unscramble the mixed-up word.</p>
-          <span class="play-label">PLAY →</span>
+        <button class="mini-card" onclick="openGame('wordle')">
+          <span class="mini-icon green">▣</span>
+          <span class="mini-name">Wordle</span>
+          <span class="mini-desc">Guess the hidden word</span>
+          <span class="mini-arrow">↗</span>
         </button>
 
-        <button class="game-card wordle-card" onclick="openGame('wordle')">
-          <span class="game-icon">🟩</span>
-          <h2>Wordle</h2>
-          <p>Guess the secret five-letter word.</p>
-          <span class="play-label">PLAY →</span>
+        <button class="mini-card" onclick="openGame('math')">
+          <span class="mini-icon blue">＋</span>
+          <span class="mini-name">Quick Math</span>
+          <span class="mini-desc">Solve it quickly</span>
+          <span class="mini-arrow">↗</span>
         </button>
 
-        <button class="game-card math-card" onclick="openGame('math')">
-          <span class="game-icon">➗</span>
-          <h2>Quick Math</h2>
-          <p>Answer the questions as fast as you can.</p>
-          <span class="play-label">PLAY →</span>
+        <button class="mini-card" onclick="openGame('reaction')">
+          <span class="mini-icon pink">⚡</span>
+          <span class="mini-name">Reaction Rush</span>
+          <span class="mini-desc">Test your reaction</span>
+          <span class="mini-arrow">↗</span>
+        </button>
+
+        <button class="mini-card" onclick="openGame('brain')">
+          <span class="mini-icon yellow">?</span>
+          <span class="mini-name">Brain Fix</span>
+          <span class="mini-desc">Solve the problem</span>
+          <span class="mini-arrow">↗</span>
+        </button>
+
+        <button class="mini-card" onclick="openGame('odd')">
+          <span class="mini-icon teal">◈</span>
+          <span class="mini-name">Odd One Out</span>
+          <span class="mini-desc">Spot the difference</span>
+          <span class="mini-arrow">↗</span>
+        </button>
+
+        <button class="mini-card" onclick="openGame('typing')">
+          <span class="mini-icon red">⌨</span>
+          <span class="mini-name">Typing Sprint</span>
+          <span class="mini-desc">Type the sentence</span>
+          <span class="mini-arrow">↗</span>
         </button>
       </div>
+
+      <button class="back-btn" onclick="goHome()">← Back to start</button>
     </section>
 
+    <!-- PLAY SCREEN -->
     <section id="play" class="screen">
-      <div class="play-header">
-        <button class="back-btn" onclick="backToGames()">← GAMES</button>
-        <div>
-          <h2 id="gameTitle">Game</h2>
-          <p id="levelLabel">Level 1</p>
-        </div>
-        <div class="timer-card">
-          <small id="timerLabel">TIME</small>
-          <strong id="timer">00:00</strong>
-        </div>
+      <div class="play-top">
+        <button class="back-btn" onclick="backToGames()">← All games</button>
+        <span id="levelLabel">LEVEL 1</span>
+        <span id="timer">00:00</span>
       </div>
 
-      <div class="progress-wrap">
-        <div id="progressBar"></div>
+      <div class="play-heading">
+        <span class="eyebrow">YOUR CHALLENGE</span>
+        <h1 id="gameTitle">Picture Puzzle</h1>
+        <div class="progress-track">
+          <div id="progressBar"></div>
+        </div>
       </div>
 
       <div id="gameArea" class="game-area"></div>
-
-      <div class="play-footer">
-        <p id="gameMessage">Good luck!</p>
-        <button id="nextBtn" class="primary-btn hidden">NEXT LEVEL →</button>
-      </div>
+      <p id="gameMessage" class="game-message"></p>
+      <button id="nextBtn" class="primary-btn next-btn hidden">NEXT LEVEL →</button>
     </section>
 
+    <!-- RESULT SCREEN -->
     <section id="result" class="screen">
       <div class="result-card">
-        <div class="result-icon" id="resultIcon">🏆</div>
-        <p class="eyebrow">CHALLENGE COMPLETE</p>
+        <div id="resultIcon" class="result-icon">🏆</div>
+        <span class="eyebrow">CHALLENGE COMPLETE</span>
         <h1 id="resultTitle">Amazing!</h1>
-        <p id="resultText"></p>
+        <p id="resultText">You completed the level.</p>
         <div class="result-stats">
-          <div><strong id="resultTime">00:00</strong><span>TIME</span></div>
-          <div><strong id="resultLevel">1</strong><span>LEVEL</span></div>
+          <div>
+            <span>TIME</span>
+            <strong id="resultTime">00:00</strong>
+          </div>
+          <div>
+            <span>LEVEL</span>
+            <strong id="resultLevel">1</strong>
+          </div>
         </div>
-        <button class="primary-btn" onclick="backToGames()">PLAY ANOTHER GAME</button>
-        <button class="secondary-btn" onclick="goHome()">BACK TO HOME</button>
+        <button class="primary-btn" onclick="backToGames()">PLAY AGAIN <span>→</span></button>
+        <button class="back-btn result-back" onclick="goHome()">Back to start</button>
       </div>
     </section>
   </main>
+
+  <footer>
+    <span>MINDRUSH © 2026</span>
+    <span>KEEP YOUR BRAIN MOVING.</span>
+  </footer>
 
   <script src="script.js"></script>
 </body>
