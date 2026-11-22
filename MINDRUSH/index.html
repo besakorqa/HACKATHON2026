@@ -7,18 +7,19 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <header class="topbar">
+<header class="topbar">
     <a class="logo" href="#" onclick="goHome()">MIND<span>RUSH</span></a>
     <div class="top-actions">
+      <button class="coin-btn" onclick="openAchievements()" title="Achievements & coins">🪙 <span class="coin-amount">0</span></button>
       <button id="soundBtn" class="icon-btn" onclick="toggleSound()">🔊</button>
       <button class="icon-btn" onclick="goHome()">⌂</button>
     </div>
   </header>
 
   <main>
-    <!-- HOME SCREEN -->
     <section id="home" class="screen active">
+     <div class="home-layout">
+      <div class="home-main">
       <div class="hero">
         <div class="hero-content">
           <span class="eyebrow">THINK FAST. PLAY SMART.</span>
@@ -41,35 +42,24 @@
           <span class="eyebrow">CUSTOMIZE YOUR GAME</span>
           <h2>Choose your challenge</h2>
         </div>
-
         <div class="settings-grid">
           <div class="setting-box">
             <h3>01. Difficulty</h3>
             <div class="choice-row">
-              <button class="choice active" data-difficulty="easy">
-                <span>☀️</span> Easy
-              </button>
-              <button class="choice" data-difficulty="hard">
-                <span>🌑</span> Hard
-              </button>
+              <button class="choice active" data-difficulty="easy"><span>☀️</span> Easy</button>
+              <button class="choice" data-difficulty="hard"><span>🌑</span> Hard</button>
             </div>
           </div>
-
           <div class="setting-box">
             <h3>02. Time mode</h3>
             <div class="choice-row">
-              <button class="choice active" data-timemode="stopwatch">
-                <span>⏱</span> Stopwatch
-              </button>
-              <button class="choice" data-timemode="fun">
-                <span>🔥</span> Fun mode
-              </button>
+              <button class="choice active" data-timemode="stopwatch"><span>⏱</span> Stopwatch</button>
+              <button class="choice" data-timemode="fun"><span>🔥</span> Fun mode</button>
             </div>
           </div>
-
           <div class="setting-box duration-box">
             <h3>03. Choose your time</h3>
-            <select id="duration">
+            <select id="duration" disabled>
               <option value="120">2 minutes</option>
               <option value="240">4 minutes</option>
               <option value="360">6 minutes</option>
@@ -79,9 +69,42 @@
           </div>
         </div>
       </div>
+      </div>
+
+      <aside class="ach-side">
+        <button class="ach-card" onclick="openAchievements()">
+          <span class="ach-trophy">🏆</span>
+          <span class="eyebrow">ACHIEVEMENTS</span>
+          <strong><span id="sideCount">0</span> / <span id="sideTotal">15</span> unlocked</strong>
+          <span class="ach-coins">🪙 <span class="coin-amount">0</span> coins</span>
+          <span class="ach-open">Open →</span>
+        </button>
+      </aside>
+     </div>
     </section>
 
-    <!-- GAME SELECTION -->
+    <section id="achievements" class="screen">
+      <div class="section-heading">
+        <span class="eyebrow">YOUR PROGRESS</span>
+        <h1>Achievements <span>&amp; coins.</span></h1>
+        <p id="achText"></p>
+      </div>
+      <div class="wallet">
+        <div class="wallet-coins">🪙 <b class="coin-amount">0</b><span>coins</span></div>
+        <div class="wallet-info">
+          <h3>How coins work</h3>
+          <p id="walletInfo"></p>
+        </div>
+      </div>
+      <div class="achievement-progress">
+        <span><b id="achCount">0</b> / <span id="achTotal">15</span> GAMES COMPLETED</span>
+        <button class="reset-link" onclick="resetAchievements()">Reset progress</button>
+      </div>
+      <div class="ach-grid" id="achGrid"></div>
+      <button class="primary-btn" onclick="backToGames()">PLAY GAMES <span>→</span></button>
+      <button class="back-btn" onclick="goHome()">← Back to start</button>
+    </section>
+
     <section id="games" class="screen">
       <div class="section-heading">
         <span class="eyebrow">PICK YOUR GAME</span>
@@ -93,7 +116,7 @@
         <div class="featured-copy">
           <span class="main-tag">★ MAIN GAME</span>
           <h2>Picture Puzzle</h2>
-          <p>Put the pieces together. Every level brings a new picture and a bigger challenge.</p>
+          <p>Put the pieces together. Every level brings a bigger challenge, and you choose the picture.</p>
           <span class="play-link">PLAY PUZZLE <b>→</b></span>
         </div>
         <div class="featured-art">
@@ -110,92 +133,46 @@
           <span class="eyebrow">MORE WAYS TO PLAY</span>
           <h2>Mini games</h2>
         </div>
-        <span class="mini-count">08 CHALLENGES</span>
+        <span class="mini-count">14 CHALLENGES</span>
       </div>
 
       <div class="mini-grid">
-        <button class="mini-card" onclick="openGame('memory')">
-          <span class="mini-icon purple">▦</span>
-          <span class="mini-name">Memory Match</span>
-          <span class="mini-desc">Find matching pairs</span>
-          <span class="mini-arrow">↗</span>
-        </button>
-
-        <button class="mini-card" onclick="openGame('scramble')">
-          <span class="mini-icon orange">Aa</span>
-          <span class="mini-name">Word Scramble</span>
-          <span class="mini-desc">Unscramble the word</span>
-          <span class="mini-arrow">↗</span>
-        </button>
-
-        <button class="mini-card" onclick="openGame('wordle')">
-          <span class="mini-icon green">▣</span>
-          <span class="mini-name">Wordle</span>
-          <span class="mini-desc">Guess the hidden word</span>
-          <span class="mini-arrow">↗</span>
-        </button>
-
-        <button class="mini-card" onclick="openGame('math')">
-          <span class="mini-icon blue">＋</span>
-          <span class="mini-name">Quick Math</span>
-          <span class="mini-desc">Solve it quickly</span>
-          <span class="mini-arrow">↗</span>
-        </button>
-
-        <button class="mini-card" onclick="openGame('reaction')">
-          <span class="mini-icon pink">⚡</span>
-          <span class="mini-name">Reaction Rush</span>
-          <span class="mini-desc">Test your reaction</span>
-          <span class="mini-arrow">↗</span>
-        </button>
-
-        <button class="mini-card" onclick="openGame('brain')">
-          <span class="mini-icon yellow">?</span>
-          <span class="mini-name">Brain Fix</span>
-          <span class="mini-desc">Solve the problem</span>
-          <span class="mini-arrow">↗</span>
-        </button>
-
-        <button class="mini-card" onclick="openGame('odd')">
-          <span class="mini-icon teal">◈</span>
-          <span class="mini-name">Odd One Out</span>
-          <span class="mini-desc">Spot the difference</span>
-          <span class="mini-arrow">↗</span>
-        </button>
-
-        <button class="mini-card" onclick="openGame('typing')">
-          <span class="mini-icon red">⌨</span>
-          <span class="mini-name">Typing Sprint</span>
-          <span class="mini-desc">Type the sentence</span>
-          <span class="mini-arrow">↗</span>
-        </button>
+        <button class="mini-card" data-game="memory" onclick="openGame('memory')"><span class="mini-icon purple">▦</span><span class="mini-name">Memory Match</span><span class="mini-desc">Find matching pairs</span><span class="mini-arrow">↗</span></button>
+        <button class="mini-card" data-game="scramble" onclick="openGame('scramble')"><span class="mini-icon orange">Aa</span><span class="mini-name">Word Scramble</span><span class="mini-desc">Unscramble the word</span><span class="mini-arrow">↗</span></button>
+        <button class="mini-card" data-game="wordle" onclick="openGame('wordle')"><span class="mini-icon green">▣</span><span class="mini-name">Wordle</span><span class="mini-desc">Guess the hidden word</span><span class="mini-arrow">↗</span></button>
+        <button class="mini-card" data-game="math" onclick="openGame('math')"><span class="mini-icon blue">＋</span><span class="mini-name">Quick Math</span><span class="mini-desc">Solve it quickly</span><span class="mini-arrow">↗</span></button>
+        <button class="mini-card" data-game="reaction" onclick="openGame('reaction')"><span class="mini-icon pink">⚡</span><span class="mini-name">Reaction Rush</span><span class="mini-desc">Test your reaction</span><span class="mini-arrow">↗</span></button>
+        <button class="mini-card" data-game="brain" onclick="openGame('brain')"><span class="mini-icon yellow">?</span><span class="mini-name">Brain Fix</span><span class="mini-desc">Push the boxes</span><span class="mini-arrow">↗</span></button>
+        <button class="mini-card" data-game="odd" onclick="openGame('odd')"><span class="mini-icon teal">◈</span><span class="mini-name">Odd One Out</span><span class="mini-desc">Spot the differences</span><span class="mini-arrow">↗</span></button>
+        <button class="mini-card" data-game="typing" onclick="openGame('typing')"><span class="mini-icon red">⌨</span><span class="mini-name">Typing Sprint</span><span class="mini-desc">Type the sentence</span><span class="mini-arrow">↗</span></button>
+        <button class="mini-card" data-game="flags" onclick="openGame('flags')"><span class="mini-icon blue">⚑</span><span class="mini-name">Guess the Flag</span><span class="mini-desc">Type it or pick it</span><span class="mini-arrow">↗</span></button>
+        <button class="mini-card" data-game="hangman" onclick="openGame('hangman')"><span class="mini-icon orange">☠</span><span class="mini-name">Hangman</span><span class="mini-desc">Guess the word</span><span class="mini-arrow">↗</span></button>
+        <button class="mini-card" data-game="sudoku" onclick="openGame('sudoku')"><span class="mini-icon green">9</span><span class="mini-name">Sudoku</span><span class="mini-desc">Fill the grid</span><span class="mini-arrow">↗</span></button>
+        <button class="mini-card" data-game="cube" onclick="openGame('cube')"><span class="mini-icon purple">◩</span><span class="mini-name">Cube Fix</span><span class="mini-desc">Sort the colours</span><span class="mini-arrow">↗</span></button>
+        <button class="mini-card" data-game="crossword" onclick="openGame('crossword')"><span class="mini-icon yellow">✎</span><span class="mini-name">Mini Crossword</span><span class="mini-desc">Solve the clues</span><span class="mini-arrow">↗</span></button>
+        <button class="mini-card" data-game="simon" onclick="openGame('simon')"><span class="mini-icon pink">♪</span><span class="mini-name">Pattern Echo</span><span class="mini-desc">Repeat the pattern</span><span class="mini-arrow">↗</span></button>
       </div>
-
       <button class="back-btn" onclick="goHome()">← Back to start</button>
     </section>
 
-    <!-- PLAY SCREEN -->
     <section id="play" class="screen">
       <div class="play-top">
         <button class="back-btn" onclick="backToGames()">← All games</button>
         <span id="levelLabel">LEVEL 1</span>
+        <button id="skipBtn" class="hint-btn hidden" onclick="skipLevel()">⏭ Skip (🪙 50)</button>
+        <button id="hintBtn" class="hint-btn" onclick="showHint()">💡 Hint (+5s)</button>
         <span id="timer">00:00</span>
       </div>
-
       <div class="play-heading">
         <span class="eyebrow">YOUR CHALLENGE</span>
         <h1 id="gameTitle">Picture Puzzle</h1>
-        <div class="progress-track">
-          <div id="progressBar"></div>
-        </div>
+        <div class="progress-track"><div id="progressBar"></div></div>
       </div>
-
       <div id="gameArea" class="game-area"></div>
       <p id="gameMessage" class="game-message"></p>
       <button id="nextBtn" class="primary-btn next-btn hidden">NEXT LEVEL →</button>
     </section>
 
-    <!-- RESULT SCREEN -->
     <section id="result" class="screen">
       <div class="result-card">
         <div id="resultIcon" class="result-icon">🏆</div>
@@ -203,14 +180,8 @@
         <h1 id="resultTitle">Amazing!</h1>
         <p id="resultText">You completed the level.</p>
         <div class="result-stats">
-          <div>
-            <span>TIME</span>
-            <strong id="resultTime">00:00</strong>
-          </div>
-          <div>
-            <span>LEVEL</span>
-            <strong id="resultLevel">1</strong>
-          </div>
+          <div><span>TIME</span><strong id="resultTime">00:00</strong></div>
+          <div><span>LEVEL</span><strong id="resultLevel">1</strong></div>
         </div>
         <button class="primary-btn" onclick="backToGames()">PLAY AGAIN <span>→</span></button>
         <button class="back-btn result-back" onclick="goHome()">Back to start</button>
@@ -218,11 +189,7 @@
     </section>
   </main>
 
-  <footer>
-    <span>MINDRUSH © 2026</span>
-    <span>KEEP YOUR BRAIN MOVING.</span>
-  </footer>
-
+  <footer><span>MINDRUSH © 2026</span><span>KEEP YOUR BRAIN MOVING.</span></footer>
   <script src="script.js"></script>
 </body>
 </html>
